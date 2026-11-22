@@ -1,12 +1,11 @@
 FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
-RUN apt-get update && apt-get install -y --no-install-recommends gcc g++ \
-    && rm -rf /var/lib/apt/lists/*
+# All dependencies ship prebuilt wheels for Python 3.12, so no compiler is needed.
 
 WORKDIR /app
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --prefer-binary -r requirements.txt
 
 COPY . .
 # Download the voice-activity and turn-detector models at build time
