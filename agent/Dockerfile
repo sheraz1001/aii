@@ -5,7 +5,11 @@ ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
 
 WORKDIR /app
 COPY requirements.txt .
-RUN pip install --prefer-binary -r requirements.txt
+# Retries + long timeout so a flaky network doesn't fail the whole build
+RUN for i in 1 2 3 4 5; do \
+      pip install --prefer-binary --retries 10 --timeout 120 -r requirements.txt && break; \
+      echo "pip attempt $i failed, retrying"; sleep 10; \
+    done && python -c "import livekit.agents"
 
 COPY . .
 # Download the voice-activity and turn-detector models at build time
