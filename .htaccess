@@ -1,0 +1,10 @@
+# aii.ae on Hostinger Cloud: serve the Laravel app from /public
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+# Never serve dotfiles (.env, .git)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
