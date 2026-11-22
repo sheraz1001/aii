@@ -1,6 +1,6 @@
 #!/bin/sh
 # One-time setup for aii.ae on Hostinger Cloud, run from an hPanel cron job:
-#   sh /home/USER/domains/aii.ae/public_html/hostinger-setup.sh >> /home/USER/domains/aii.ae/setup.log 2>&1
+#   /bin/sh /home/USER/domains/aii.ae/public_html/hostinger-setup.sh >> /home/USER/domains/aii.ae/setup.log 2>&1
 # Run 1 creates ../.env.aii (outside public_html, safe from Git redeploys),
 #        generates APP_KEY and AII_AGENT_TOKEN.
 # Then put the database password into .env.aii (DB_PASSWORD=...).
@@ -9,7 +9,7 @@
 set -e
 APP="$(cd "$(dirname "$0")" && pwd)"
 ENVF="$(dirname "$APP")/.env.aii"
-PHP="${PHP:-php}"
+if [ -z "$PHP" ]; then if [ -x /usr/bin/php ]; then PHP=/usr/bin/php; else PHP=php; fi; fi
 cd "$APP"
 echo "---- $(date) ----"
 
