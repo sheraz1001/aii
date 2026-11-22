@@ -1,0 +1,17 @@
+{
+  "id": null,
+  "name": "Smile Dental Clinic",
+  "assistant_name": "Sara",
+  "description": "A family dental clinic in Dubai offering check-ups, cleaning, fillings, whitening, braces and emergency dental care.",
+  "location": "Al Wasl Road, Jumeirah 1, Dubai (demo address)",
+  "hours": "Saturday to Thursday 9:00 am to 9:00 pm. Friday 4:00 pm to 9:00 pm.",
+  "services_and_prices": "Check-up and consultation AED 200. Scaling and polishing AED 350. Teeth whitening from AED 1,200. Prices are a guide; the dentist confirms the final cost.",
+  "faqs": "Most major insurance cards are accepted; the front desk confirms each card. Free parking is available behind the building. Walk-ins are welcome but appointments are seen first.",
+  "booking_rules": "Collect the caller's name, mobile number, preferred day and time and the reason for the visit. Do not confirm a slot; tell the caller the team will confirm by WhatsApp.",
+  "transfer_number": "",
+  "languages": ["English", "Arabic"],
+  "stt_language": "multi",
+  "tts_voice_id": "",
+  "owner_email": "",
+  "extra_instructions": "Never give medical advice. For severe pain, swelling or bleeding, advise the caller to visit the clinic or emergency services, and mark the message urgent."
+}
