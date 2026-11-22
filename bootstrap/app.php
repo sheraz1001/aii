@@ -5,7 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 
-return Application::configure(basePath: dirname(__DIR__))
+$app = Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         api: __DIR__.'/../routes/api.php',
@@ -20,3 +20,12 @@ return Application::configure(basePath: dirname(__DIR__))
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
     })->create();
+
+// On Hostinger the app lives in ~/domains/aii.ae/public_html, which Git
+// deployments overwrite. Keep the settings one level up, in .env.aii.
+$outside = dirname(__DIR__, 2);
+if (is_file($outside.'/.env.aii')) {
+    $app->useEnvironmentPath($outside)->loadEnvironmentFrom('.env.aii');
+}
+
+return $app;
